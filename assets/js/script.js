@@ -55,10 +55,12 @@ console.log(bombs)
     
     //TASTO PLAY
     newSquare.addEventListener('click', function (){  
+
         numbersOfSelections++;        
             if (bombs.includes(parseInt(newSquare.innerHTML))) {
-                newSquare.innerHTML = bombImg;
-                alert("HAI PERSO!")
+                newSquare.innerHTML = bombImg
+                numbersOfSelections = 0;
+                alert(`HAI PERSO! HAI OTTENUTO UNO SCORE DI: ${points.innerHTML}`);
             } else {
                 newSquare.classList.add('styles-selection');             
             }             
