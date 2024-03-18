@@ -35,3 +35,10 @@
 .bomb {
     background-color: red;
 }
+
+.score {
+    background-color: limegreen;
+    color: red;
+    height: 40px;
+    border-radius: 10px;
+}

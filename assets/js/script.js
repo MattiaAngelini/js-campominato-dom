@@ -1,8 +1,19 @@
-//Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: 
-//le bombe. Attenzione: nella stessa cella può essere posizionata al massimo una bomba,
-// perciò nell’array delle bombe non potranno esserci due numeri uguali.
+
+//In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - 
+//abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
+// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+
+//La partita termina quando il giocatore clicca su una bomba o 
+//quando raggiunge il numero massimo possibile di numeri consentiti 
+//(ovvero quando ha rivelato tutte le celle che non sono bombe).
+
+
+//Al termine della partita il software deve comunicare il punteggio, 
+//cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba
 
 //START
+
+//VARIABILI
 
 //selettore della griglia
 const gridGame = document.querySelector("#grid-game");
@@ -10,16 +21,21 @@ const gridGame = document.querySelector("#grid-game");
 //selettore per il tasto play 
 const buttonPlay = document.querySelector("#button-play");
 
+//selettore delle caselle
 const buttonSquare = document.querySelector(".square");
 
+//variabile che tiene traccia del numero di click sulle caselle.
+let numbersOfSelections = 0;
+
+// variabili con il numero dei quadrati e delle celle in base a livello selezionato.
 let numbersOfSquare;
 let numbersOfCells;
-//evento al play che fa comparire la griglia
+
+
+//TASTO PLAY
 buttonPlay.addEventListener ('click', function (){ 
- 
     //RESET dopo ogni nuovo click
     gridGame.innerHTML = "";
-
 //creo selettore difficoltà selezionata.
 const choice = document.querySelector("#levels").value;
     
@@ -38,9 +54,7 @@ if (choice === 'easy') {
 
 //variabile contente la funzione che genera i 16 numeri casuali,
 // con un range da 1 a 'numero dei quadrati'.
-
 let bombs = generateNonRepeatedNumbers(numbersOfSquare);
-console.log(bombs);
 
   // Ciclo che genera un certo numero di div in base alla scelta dell'utente (easy-medium-hard).
   for (let i = 1; i <= numbersOfSquare; i++) {
@@ -50,13 +64,17 @@ console.log(bombs);
     //evento click al premere degli square, se un numero casuale di bombs 
     // è incluso tra i numeri generato in new square: aggiungiamo o rimuoviamo classe (bg-color)
     // per stabilire errore.
-    
-    newSquare.addEventListener('click', function (){       
+
+    //TASTO PLAY
+    newSquare.addEventListener('click', function (){  
+        numbersOfSelections++;        
             if (bombs.includes(parseInt(newSquare.innerHTML))) {
                 newSquare.classList.add('bomb');
+                alert("HAI PERSO!")
             } else {
                 newSquare.classList.add('styles-selection');
             }   
+            console.log(numbersOfSelections);
         })   
 }
 });
