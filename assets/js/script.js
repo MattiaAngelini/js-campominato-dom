@@ -58,9 +58,10 @@ console.log(bombs)
 
         numbersOfSelections++;        
             if (bombs.includes(parseInt(newSquare.innerHTML))) {
-                newSquare.innerHTML = bombImg
-                numbersOfSelections = 0;
+                newSquare.innerHTML = bombImg          
                 alert(`HAI PERSO! HAI OTTENUTO UNO SCORE DI: ${points.innerHTML}`);
+                gridGame.innerHTML = "";
+                numbersOfSelections = 0;
             } else {
                 newSquare.classList.add('styles-selection');             
             }             
