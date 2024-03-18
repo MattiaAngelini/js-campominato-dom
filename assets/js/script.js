@@ -24,6 +24,10 @@ const buttonPlay = document.querySelector("#button-play");
 //selettore delle caselle
 const buttonSquare = document.querySelector(".square");
 
+//selettore dello score
+const points = document.querySelector("#points");
+
+
 //variabile che tiene traccia del numero di click sulle caselle.
 let numbersOfSelections = 0;
 
@@ -74,7 +78,8 @@ let bombs = generateNonRepeatedNumbers(numbersOfSquare);
             } else {
                 newSquare.classList.add('styles-selection');
             }   
-            console.log(numbersOfSelections);
+            
+             points.innerHTML= numbersOfSelections;
         })   
 }
 });
