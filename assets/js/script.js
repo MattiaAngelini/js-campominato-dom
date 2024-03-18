@@ -1,8 +1,6 @@
-
 //START
 
 //VARIABILI:
-
 //selettore della griglia
 const gridGame = document.querySelector("#grid-game");
 
@@ -15,6 +13,8 @@ const buttonSquare = document.querySelector(".square");
 //selettore dello score
 const points = document.querySelector(".points");
 
+//Immagine bomba
+const bombImg = '<img class="img-fluid" src="./assets/img/bomb.jpg" alt="bomb">';
 
 //variabile che tiene traccia del numero di click sulle caselle.
 let numbersOfSelections = 0;
@@ -44,7 +44,7 @@ if (choice === 'easy') {
 }
 
 //variabile contente la funzione che genera i 16 numeri casuali,
-// con un range da 1 a 'numero dei quadrati'.
+// con un range da 1 a max ('numero dei quadrati').
 let bombs = generateNonRepeatedNumbers(numbersOfSquare);
 console.log(bombs)
 
@@ -53,37 +53,23 @@ console.log(bombs)
     const newSquare = createDiv(i, numbersOfCells);  
     gridGame.append(newSquare); 
     
-
     //TASTO PLAY
     newSquare.addEventListener('click', function (){  
         numbersOfSelections++;        
             if (bombs.includes(parseInt(newSquare.innerHTML))) {
-                newSquare.classList.add('bomb');
+                newSquare.innerHTML = bombImg;
                 alert("HAI PERSO!")
             } else {
-                newSquare.classList.add('styles-selection');
+                newSquare.classList.add('styles-selection');             
             }             
              points.innerHTML= numbersOfSelections;          
             //aggiungo condizione in caso di vittoria.
-             if (numbersOfSelections=== (numbersOfSquare - 16)){
+             if (numbersOfSelections === (numbersOfSquare - 16)){
                 alert("HAI VINTO!")
             }
         })   
 }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // FUNCTIONS
 // Funzione che genera un div con classe square di dimensioni proporzionate al numero delle celle.
@@ -112,3 +98,4 @@ function createDiv(number, numbersOfCells) {
     }
     return numbers;
 }
+
