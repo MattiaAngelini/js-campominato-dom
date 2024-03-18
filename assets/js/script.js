@@ -11,7 +11,6 @@ const gridGame = document.querySelector("#grid-game");
 const buttonPlay = document.querySelector("#button-play");
 
 const buttonSquare = document.querySelector(".square");
-console.log(buttonSquare)
 
 let numbersOfSquare;
 let numbersOfCells;
@@ -37,18 +36,29 @@ if (choice === 'easy') {
     numbersOfCells = 7;
 }
 
+//variabile contente la funzione che genera i 16 numeri casuali,
+// con un range da 1 a 'numero dei quadrati'.
+
 let bombs = generateNonRepeatedNumbers(numbersOfSquare);
-console.log(bombs)
+console.log(bombs);
 
-  // Ciclo che genera un certo numero di div in base alla scelta dell'utente (condizione in alto).
+  // Ciclo che genera un certo numero di div in base alla scelta dell'utente (easy-medium-hard).
   for (let i = 1; i <= numbersOfSquare; i++) {
-    const newSquare = createDiv(i, numbersOfCells);
+    const newSquare = createDiv(i, numbersOfCells);  
     gridGame.append(newSquare); 
-    newSquare.addEventListener('click', function (){    
-    newSquare.classList.add('styles-selection');
-        })
+    
+    //evento click al premere degli square, se un numero casuale di bombs 
+    // è incluso tra i numeri generato in new square: aggiungiamo o rimuoviamo classe (bg-color)
+    // per stabilire errore.
+    
+    newSquare.addEventListener('click', function (){       
+            if (bombs.includes(parseInt(newSquare.innerHTML))) {
+                newSquare.classList.add('bomb');
+            } else {
+                newSquare.classList.add('styles-selection');
+            }   
+        })   
 }
-
 });
 
 // FUNCTIONS
