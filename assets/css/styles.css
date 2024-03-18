@@ -1,0 +1,34 @@
+/*******GENERAL*****/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*******LAYOUT GRID + BOX *******/
+#grid-game {
+    width: 600px;
+    height: 600px;
+    background-color: green;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.square {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    background-color: cadetblue;
+    border: 2px solid black;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.styles-selection {
+    background-color: blue;
+    color: white;
+}
