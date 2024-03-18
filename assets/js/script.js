@@ -1,19 +1,7 @@
 
-//In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - 
-//abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
-// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-
-//La partita termina quando il giocatore clicca su una bomba o 
-//quando raggiunge il numero massimo possibile di numeri consentiti 
-//(ovvero quando ha rivelato tutte le celle che non sono bombe).
-
-
-//Al termine della partita il software deve comunicare il punteggio, 
-//cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba
-
 //START
 
-//VARIABILI
+//VARIABILI:
 
 //selettore della griglia
 const gridGame = document.querySelector("#grid-game");
@@ -25,7 +13,7 @@ const buttonPlay = document.querySelector("#button-play");
 const buttonSquare = document.querySelector(".square");
 
 //selettore dello score
-const points = document.querySelector("#points");
+const points = document.querySelector(".points");
 
 
 //variabile che tiene traccia del numero di click sulle caselle.
@@ -34,7 +22,6 @@ let numbersOfSelections = 0;
 // variabili con il numero dei quadrati e delle celle in base a livello selezionato.
 let numbersOfSquare;
 let numbersOfCells;
-
 
 //TASTO PLAY
 buttonPlay.addEventListener ('click', function (){ 
@@ -59,15 +46,13 @@ if (choice === 'easy') {
 //variabile contente la funzione che genera i 16 numeri casuali,
 // con un range da 1 a 'numero dei quadrati'.
 let bombs = generateNonRepeatedNumbers(numbersOfSquare);
+console.log(bombs)
 
   // Ciclo che genera un certo numero di div in base alla scelta dell'utente (easy-medium-hard).
   for (let i = 1; i <= numbersOfSquare; i++) {
     const newSquare = createDiv(i, numbersOfCells);  
     gridGame.append(newSquare); 
     
-    //evento click al premere degli square, se un numero casuale di bombs 
-    // è incluso tra i numeri generato in new square: aggiungiamo o rimuoviamo classe (bg-color)
-    // per stabilire errore.
 
     //TASTO PLAY
     newSquare.addEventListener('click', function (){  
@@ -77,12 +62,28 @@ let bombs = generateNonRepeatedNumbers(numbersOfSquare);
                 alert("HAI PERSO!")
             } else {
                 newSquare.classList.add('styles-selection');
-            }   
-            
-             points.innerHTML= numbersOfSelections;
+            }             
+             points.innerHTML= numbersOfSelections;          
+            //aggiungo condizione in caso di vittoria.
+             if (numbersOfSelections=== (numbersOfSquare - 16)){
+                alert("HAI VINTO!")
+            }
         })   
 }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // FUNCTIONS
 // Funzione che genera un div con classe square di dimensioni proporzionate al numero delle celle.

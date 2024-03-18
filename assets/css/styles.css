@@ -26,7 +26,6 @@
     align-items: center;
 }
 
-
 .styles-selection {
     background-color: blue;
     color: white;
@@ -37,8 +36,13 @@
 }
 
 .score {
-    background-color: limegreen;
-    color: red;
+    background-color: lightskyblue;  
     height: 40px;
     border-radius: 10px;
+}
+
+.points {
+    font-weight: 800;
+    color: rgb(149, 12, 235);
+
 }
