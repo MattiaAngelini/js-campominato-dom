@@ -1,22 +1,3 @@
-// Bonus
-//Aggiungere una select accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
-
-//- con difficoltà 1 => 100 caselle, 
-//- con difficoltà 2 => 81 caselle
-//- con difficoltà 3 => 49 caselle
-
-// 1) - L'utente clicca su un bottone che genererà una griglia di 
-//     gioco quadrata.
-
-// 2) - Ogni cella ha un numero progressivo, da 1 a 100.
-//     ci saranno quindi 10 caselle per ognuna delle 10 righe.
-
-// 3) - Quando l'utente clicca su ogni cella, 
-
-// 4) - la cella cliccata si colora di azzurro 
-
-// 5) - ed emetto un messaggio in console 
-//     con il numero della cella cliccata.
 
 //START
 
@@ -57,8 +38,12 @@ if (choice === 'easy') {
 // devo creare una funzione che crea un numero di div pari a numbersOfsquare.
 
   // Ciclo for che genera un div tante volte quanto il numero degli squares.
+  // il div ha evento click per fare cambiare colore allo square.
   for (let i = 1; i <= numbersOfSquare; i++) {
     const newSquare = createDiv(i);
+    newSquare.addEventListener('click', function (){    
+    newSquare.classList.add('styles-selection');
+    })
     gridGame.append(newSquare); 
 }
 
